@@ -4,28 +4,28 @@ public class ExpresionTree extends TreeNode implements Expressions {
 
 	public ExpresionTree(Object v) {
 		super(v);
-		
+	
 		
 	}
 
 	@Override
 	public TreeNode buildTree(String[] exp) {
-		TreeNode root  = null;
-		TreeNode leftRoot = null;
-		TreeNode rightRoot = null;
-	Stack<String> stack1 = new Stack<String>();	
+	TreeNode node = null;
+	TreeNode a= null;
+	TreeNode b = null;
+	Stack<TreeNode> stack1 = new Stack<TreeNode>();	
 	for(int i =0; i < exp.length-1;i++) {
 		if((!(exp[i].equals("+") || exp[i].equals("*")))) {
-			stack1.push(exp[i]);
+			node = new TreeNode(exp[i]);
+			stack1.push(node);
 		}else {
-			leftRoot.setValue(stack1.pop());
-			rightRoot.setValue(stack1.pop());
-			root.setValue(exp[i]);
-			root.setLeft(leftRoot);
-			root.setRight(rightRoot);
-			return root;
-		}
+			b = stack1.pop();
+			a = stack1.pop();
 		
+			stack1.push( new TreeNode(exp[i], a,b));
+
+		}
+	return stack1.pop();
 	}
 	return null;
 	
