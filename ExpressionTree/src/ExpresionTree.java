@@ -1,5 +1,4 @@
 
-
 public class ExpresionTree extends TreeNode implements Expressions {
 
 	public ExpresionTree(Object v) {
@@ -13,19 +12,29 @@ public class ExpresionTree extends TreeNode implements Expressions {
 	}
 
 	public int evalTree(TreeNode root) {
-	if (root != null) {
-		if(!isOperator(root)) {
+		int num1 =0;
+		int num2 = 0;
 
-			return Integer.parseInt(root.toString());
+		if (root != null) {
+			if (!isOperator(root)) {
+				return Integer.parseInt(root.getValue().toString());
+			}
+			num1 = evalTree(root.getLeft());
+			num2 = evalTree(root.getRight());
 		}
-		evalTree(root.getLeft());
-		evalTree(root.getRight());
-	}
+
+		switch (root.getValue().toString()) {
+		case "+":
+			return num1 + num2;
+		case "*":
+			return num1 * num2;
+
+		}
 		return 0;
 	}
-	
+
 	public boolean isOperator(TreeNode root) {
-		if(root.toString().equals("+") || root.toString().equals("*")) {
+		if (root.getValue().toString().equals("+") || root.getValue().toString().equals("*")) {
 			return true;
 		}
 		return false;
