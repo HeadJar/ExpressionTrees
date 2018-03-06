@@ -2,6 +2,10 @@
 
 public class ExpresionTree extends TreeNode implements Expressions {
 
+	public ExpresionTree(Object v) {
+		super(v);
+	}
+
 	@Override
 	public TreeNode buildTree(String[] exp) {
 		// TODO Auto-generated method stub
@@ -14,8 +18,8 @@ public class ExpresionTree extends TreeNode implements Expressions {
 
 			return Integer.parseInt(root.toString());
 		}
-		evalTree(root.getLeft);
-		evalTree(root.getRight);
+		evalTree(root.getLeft());
+		evalTree(root.getRight());
 	}
 		return 0;
 	}
@@ -47,6 +51,12 @@ public class ExpresionTree extends TreeNode implements Expressions {
 
 	@Override
 	public int postfixEval(String[] exp) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int evalTree() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
