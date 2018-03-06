@@ -1,14 +1,34 @@
+import java.util.Stack;
 
 public class ExpresionTree extends TreeNode implements Expressions {
 
 	public ExpresionTree(Object v) {
 		super(v);
+		
+		
 	}
 
 	@Override
 	public TreeNode buildTree(String[] exp) {
-		// TODO Auto-generated method stub
-		return null;
+		TreeNode root  = null;
+		TreeNode leftRoot = null;
+		TreeNode rightRoot = null;
+	Stack<String> stack1 = new Stack<String>();	
+	for(int i =0; i < exp.length-1;i++) {
+		if((!(exp[i].equals("+") || exp[i].equals("*")))) {
+			stack1.push(exp[i]);
+		}else {
+			leftRoot.setValue(stack1.pop());
+			rightRoot.setValue(stack1.pop());
+			root.setValue(exp[i]);
+			root.setLeft(leftRoot);
+			root.setRight(rightRoot);
+			return root;
+		}
+		
+	}
+	return null;
+	
 	}
 
 	public int evalTree(TreeNode root) {
