@@ -1,6 +1,6 @@
-import javax.swing.tree.TreeNode;
 
-public class ExpresionTree implements Expressions{
+
+public class ExpresionTree extends TreeNode implements Expressions {
 
 	@Override
 	public TreeNode buildTree(String[] exp) {
