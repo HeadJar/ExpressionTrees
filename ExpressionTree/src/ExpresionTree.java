@@ -2,10 +2,14 @@ import java.util.Stack;
 
 public class ExpresionTree extends TreeNode implements Expressions {
 
-	public ExpresionTree(Object v) {
-		super(v);
+	public ExpresionTree(String s) {
+		super("");
 	
-		
+		String[] exp = s.split(" ");
+      
+      TreeNode root = buildTree(exp);
+      //TODO
+      System.out.println("hello");
 	}
 
 	@Override
@@ -89,5 +93,15 @@ public class ExpresionTree extends TreeNode implements Expressions {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+public static void main(String[]args){
+
+ExpresionTree e = new ExpresionTree("4 6 + 7 * 8 +");
+
+//String[] str = ["4","6","+","7","*","8","+"];
+
 
 }
+
+
+}
+
