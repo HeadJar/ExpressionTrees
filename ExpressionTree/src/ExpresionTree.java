@@ -4,39 +4,47 @@ public class ExpresionTree extends TreeNode implements Expressions {
 
 	public ExpresionTree(String s) {
 		super("");
-	
+
 		String[] exp = s.split(" ");
-      
-      TreeNode root = buildTree(exp);
-      //TODO
-      System.out.println("hello");
+
+		TreeNode root = buildTree(exp);
+		// TODO
+		System.out.println("hello");
 	}
 
 	@Override
 	public TreeNode buildTree(String[] exp) {
-	TreeNode node = null;
-	TreeNode a= null;
-	TreeNode b = null;
-	Stack<TreeNode> stack1 = new Stack<TreeNode>();	
-	for(int i =0; i < exp.length-1;i++) {
-		if((!(exp[i].equals("+") || exp[i].equals("*")))) {
-			node = new TreeNode(exp[i]);
-			stack1.push(node);
-		}else {
-			b = stack1.pop();
-			a = stack1.pop();
-		
-			stack1.push( new TreeNode(exp[i], a,b));
+		TreeNode node = null;
+		TreeNode a = null;
+		TreeNode b = null;
+
+		Stack<TreeNode> stack1 = new Stack<TreeNode>();
+
+		for (int i = 0; i < exp.length; i++) {
+
+			if ((!(exp[i].equals("+") || exp[i].equals("*")))) {
+
+				node = new TreeNode(exp[i]);
+
+				stack1.push(node);
+
+				System.out.println(exp.length);
+			} else {
+				b = stack1.pop();
+				a = stack1.pop();
+
+				stack1.push(new TreeNode(exp[i], a, b));
+
+			}
 
 		}
-	return stack1.pop();
-	}
-	return null;
-	
+
+		return stack1.pop();
+
 	}
 
 	public int evalTree(TreeNode root) {
-		int num1 =0;
+		int num1 = 0;
 		int num2 = 0;
 
 		if (root != null) {
@@ -93,15 +101,13 @@ public class ExpresionTree extends TreeNode implements Expressions {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-public static void main(String[]args){
 
-ExpresionTree e = new ExpresionTree("4 6 + 7 * 8 +");
+	public static void main(String[] args) {
 
-//String[] str = ["4","6","+","7","*","8","+"];
+		ExpresionTree e = new ExpresionTree("4 6 + 7 * 8 +");
 
+		// String[] str = ["4","6","+","7","*","8","+"];
+
+	}
 
 }
-
-
-}
-
