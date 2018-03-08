@@ -38,7 +38,7 @@ public class ExpresionTree extends TreeNode implements Expressions {
 			}
 
 		}
-
+System.out.println("Hey");
 		return stack1.pop();
 
 	}
