@@ -38,7 +38,7 @@ public class ExpresionTree extends TreeNode implements Expressions {
 			}
 
 		}
-System.out.println("Hey");
+
 		return stack1.pop();
 
 	}
@@ -96,12 +96,7 @@ System.out.println("Hey");
 		return 0;
 	}
 
-	@Override
-	public int evalTree() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	public static void main(String[] args) {
 
 		ExpresionTree e = new ExpresionTree("4 6 + 7 * 8 +");
