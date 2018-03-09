@@ -6,4 +6,6 @@ String toPrefixNotation();
 String toInfixNotation();
 String toPostfixNotation();
 int postfixEval(String[] exp);
+int evalTree(TreeNode root);
+
 }

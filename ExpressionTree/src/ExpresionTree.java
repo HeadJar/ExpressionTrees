@@ -2,6 +2,8 @@ import java.util.Stack;
 
 public class ExpresionTree extends TreeNode implements Expressions {
 
+	
+
 	public ExpresionTree(String s) {
 		super("");
 
@@ -43,6 +45,7 @@ public class ExpresionTree extends TreeNode implements Expressions {
 
 	}
 
+
 	public int evalTree(TreeNode root) {
 		int num1 = 0;
 		int num2 = 0;
@@ -64,6 +67,33 @@ public class ExpresionTree extends TreeNode implements Expressions {
 		}
 		return 0;
 	}
+	@Override
+	public int evalTree() {
+		int num1 = 0;
+		int num2 = 0;
+
+		if (this != null) {
+			if (!isOperator(this)) {
+				return Integer.parseInt(this.getValue().toString());
+			}
+			num1 = evalTree(this.getLeft());
+			num2 = evalTree(this.getRight());
+		}
+
+		switch (this.getValue().toString()) {
+		case "+":
+			return num1 + num2;
+		case "*":
+			return num1 * num2;
+
+		}
+		return 0;
+	}
+	
+	
+	
+	
+	
 
 	public boolean isOperator(TreeNode root) {
 		if (root.getValue().toString().equals("+") || root.getValue().toString().equals("*")) {
@@ -72,10 +102,79 @@ public class ExpresionTree extends TreeNode implements Expressions {
 		return false;
 	}
 
+
+	public String toPrefixNotation(TreeNode t) {
+
+
+		if (t.getValue() == null) {
+			return "";
+		}
+		if (isOperator(t)) {
+			return t.getValue().toString() + toPrefixNotation(t.getLeft()) + toPrefixNotation(t.getRight());
+		}else
+			return t.getValue().toString();
+	}
+
+	
 	@Override
 	public String toPrefixNotation() {
+		if(this.getValue() ==null) { 
+			return ""; 
+			}
+		if(isOperator(this)) {
+			return this.getValue().toString() + toPrefixNotation(this.getLeft()) + toPrefixNotation(this.getRight());
+		}else
+		return this.getValue().toString();
+		}
+		
+	
+	
+
+	public String toInfixNotation(TreeNode t) {
+
+	
+		
+		
+		return "";
+	}
+
+
+	public String toPostfixNotation(TreeNode t) {
+		if (t.getValue() == null) {
+			return "";
+		}
+		if (isOperator(t)) {
+			return  toPrefixNotation(t.getLeft()) + toPrefixNotation(t.getRight()) + t.getValue().toString();
+		}else
+			return t.getValue().toString();
+	}
+	
+	@Override
+	public String toPostfixNotation() {
+		if(this.getValue() ==null) { 
+			return ""; 
+			}
+		if(isOperator(this)) {
+			return toPrefixNotation(this.getLeft()) + toPrefixNotation(this.getRight()) +  this.getValue().toString();
+		}else
+		return this.getValue().toString();
+	}
+	
+	
+		
+
+	@Override
+	public int postfixEval(String[] exp) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
+	}
+
+	public static void main(String[] args) {
+
+		ExpresionTree e = new ExpresionTree("4 6 + 7 * 8 +");
+
+		// String[] str = ["4","6","+","7","*","8","+"];
+
 	}
 
 	@Override
@@ -84,25 +183,8 @@ public class ExpresionTree extends TreeNode implements Expressions {
 		return null;
 	}
 
-	@Override
-	public String toPostfixNotation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public int postfixEval(String[] exp) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	
-	public static void main(String[] args) {
 
-		ExpresionTree e = new ExpresionTree("4 6 + 7 * 8 +");
-
-		// String[] str = ["4","6","+","7","*","8","+"];
-
-	}
 
 }
